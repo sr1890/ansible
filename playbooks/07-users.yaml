@@ -1,17 +1,17 @@
-- name: play create  user from var file
+- name: play create users from var file
   hosts: container
   become: yes
   vars_files:
   - vars/users.yaml
   tasks:
-    - name: create group user
-      group:
-        name: "{‌{ assignment_group }}"
-        state: present
-    - name: create new users
-      user:
-        name: "{{ assignment_user_name }}"
-        uid: "{{ assignment_user_id }}"
-        status: present
-        groups: "{‌{ assignment_group }}"
-        append: yes
+  - name: group exists
+    group:
+      name: "{‌{ assignment_group }}"
+      state: present
+  - name: user exists
+    user:
+      name: "{‌{ assignment_user_name }}"
+      uid: "{‌{ assignment_user_id }}"
+      state: present
+      groups: "{‌{ assignment_group }}"
+      append: yes
