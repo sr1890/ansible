@@ -6,11 +6,11 @@
   tasks:
     - name: webserver is installed 
       package: 
-        name: {{ webserver }}
+        name: {{webserver}}
         state: present
     - name: webserver is running
       service:
-        name: {{ webserver }}
+        name: {{webserver}}
         state: started
     - name: web server root directory created 
       file:
