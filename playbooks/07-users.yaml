@@ -1,7 +1,7 @@
-- name: user add 
+- name: play create  user from var file
   hosts: container
   become: yes
-  vars_file:
+  vars_files:
   - vars/users.yaml
   tasks:
     - name: create group user
