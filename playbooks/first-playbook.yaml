@@ -1,12 +1,16 @@
-- hosts: ec2
+- name: play for file management
+  hosts: ec2
   tasks:
-  - copy:
+  - name: hello file is copied
+    copy:
       content: "Hello World"
       dest: "/tmp/hello.txt"  
-  - copy:
+  - name: hi file copied
+    copy:
       content: "Hi There"
       dest: "/tmp/hi.txt"  
-  - archive:
+  - name: archive created
+    archive:
       path:
       - /tmp/hello.txt
       - /tmp/hi.txt
