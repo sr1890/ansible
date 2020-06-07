@@ -1,0 +1,12 @@
+- hosts: ec2
+  tasks:
+    - name: webserver is installed 
+      package: 
+        name: nginx
+        state: present
+    - name: webserver is running
+      service:
+        name: nginx
+        state: started
+        
+
