@@ -1,0 +1,15 @@
+- hosts: ec2
+  tasks:
+  - copy:
+      content: "Hello World"
+      dest: "/tmp/hello.txt"  
+  - copy:
+      content: "Hi There"
+      dest: "/tmp/hi.txt"  
+  - archive:
+      path:
+      - /tmp/hello.txt
+      - /tmp/hi.txt
+      dest: /tmp/san.zip
+      format: zip
+
