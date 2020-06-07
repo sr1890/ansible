@@ -1,0 +1,17 @@
+- name: user add 
+  hosts: container
+  become: yes
+  vars_file:
+  - vars/users.yaml
+  tasks:
+    - name: create group user
+      group:
+        name: "{‌{ assignment_group }}"
+        state: present
+    - name: create new users
+      user:
+        name: "{{ assignment_user_name }}"
+        uid: "{{ assignment_user_id }}"
+        status: present
+        groups: "{‌{ assignment_group }}"
+        append: yes
