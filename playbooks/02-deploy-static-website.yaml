@@ -9,5 +9,13 @@
       service:
         name: nginx
         state: started
+    - name: web server root directory created 
+      file:
+        path: /var/www/html
+        state: directory
+    - name: static website 
+      uri:
+        url: https://raw.githubusercontent.com/abdennour/example-static-website/ansible-course-index-v2/index.html
+        dest: /var/www/html # /usr/share/nginx/html
 
 
