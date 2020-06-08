@@ -1,4 +1,4 @@
-- hosts:
+- hosts: ec2
   become: yes
   tasks:
   - name: weserver is installed
