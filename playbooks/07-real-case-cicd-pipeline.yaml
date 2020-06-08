@@ -1,25 +1,24 @@
+
 - hosts: ec2
   become: yes
-  vars: 
+  vars:
     webserver: nginx
     webserver_root_dir: /var/www/html
     git_branch: ansible-course
-    tasks:
-    - name: webserver is installed 
-      package: 
-        name: "{{ webserver }}"
-        state: present
-    - name: webserver is running
-      service:
-        name: "{{ webserver }}"
-        state: started
-    - name: web server root directory created 
-      file:
-        path: "{{ webserver_root_dir }}"
-        state: directory
-    - name: static website 
-      uri:
-        url: https://raw.githubusercontent.com/abdennour/example-static-website/{{ git_branch}}/login.html
-        dest: "{{ webserver_root_dir }}" # /usr/share/nginx/html
-
-
+  tasks:
+  - name: webserver is installed
+    package:
+      name: "{{ webserver }}"
+      state: present
+  - name: webserver is up
+    service:
+      name: "{{ webserver }}"
+      state: started
+  - name: webserver root directory exists
+    file:
+      path: "{{ webserver_root_dir }}"
+      state: directory
+  - name: static website is deployed
+    uri:
+      url: https://raw.githubusercontent.com/abdennour/example-static-website/{{ git_branch }}/index.html
+      dest: "{{ webserver_root_dir }}" # /usr/share/nginx/html
