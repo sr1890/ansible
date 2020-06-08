@@ -1,0 +1,14 @@
+- hosts: ec2
+  become: yes
+  vars:
+    webserver: nginx
+    webserver_root_dir: /var/www/html
+    git_branch: ansible-course
+  tasks:
+  - name: webserver is installed
+  - name: webserver is up 
+  - name: webserver root directory exisit
+  - name: static website
+    uri: 
+      url: https://raw.githubusercontent.com/abdennour/example-static-website/ansible-course/login.html
+      dest: "{{ webserver_root_dir  }}"
