@@ -6,8 +6,8 @@ container ansible_host=localhost ansible_private_key_file=./ansibleuser ansible_
 # ssh -i .ssh/key_nv.pem ubuntu@35.153.17.41
 
 dev1 ansible_host=52.3.252.26 ansible_private_key_file=.ssh/key_nv.pem ansible_ssh_user=ubuntu
-prod1 ansible_host=35.153.17.41 ansible_private_key_file=.ssh/key_nv.pem ansible_ssh_user=ubuntu
-prod2 ansible_host=54.237.51.164 ansible_private_key_file=.ssh/key_nv.pem ansible_ssh_user=ubuntu
+prod1 ansible_host=35.153.17.41
+prod2 ansible_host=54.237.51.164
 
 [prod]
 prod1
@@ -15,3 +15,7 @@ prod2
 
 [dev]
 dev1
+
+[prod:vars]
+ansible_private_key_file=.ssh/key_nv.pem
+ansible_ssh_user=ubuntu
