@@ -16,6 +16,10 @@ prod2
 [dev]
 dev1
 
+[dev:vars]
+git_branch=ansible-course
+
 [prod:vars]
 ansible_private_key_file=.ssh/key_nv.pem
 ansible_ssh_user=ubuntu
+git_branch=ansible-course-index-v2
