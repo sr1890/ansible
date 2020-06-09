@@ -9,5 +9,5 @@
         Distribution Version  : {{ ansible_facts.distribution_version}}
         Nbre CPU core          : {{ ansible_facts.processor_vcpus}} 
         Total Memory            : {{ ansible_facts.memtotal_mb}}
-     dest: /tmp/specs.report
+      dest: /tmp/specs.report
 

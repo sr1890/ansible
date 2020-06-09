@@ -1,3 +1,10 @@
-ec2 ansible_host=100.26.214.5 ansible_private_key_file=./ansibleuser ansible_ssh_user=ansibleuser
+#ec2 ansible_host=100.26.214.5 ansible_private_key_file=./ansibleuser ansible_ssh_user=ansibleuser
 # ssh -i ansibleuser ansibleuser@localhost -p 2525
 container ansible_host=localhost ansible_private_key_file=./ansibleuser ansible_ssh_user=ansibleuser ansible_ssh_port=2525
+###############
+
+# ssh -i .ssh/key_nv.pem ubuntu@35.153.17.41
+
+dev1 ansible_host=52.3.252.26 ansible_private_key_file=.ssh/key_nv.pem ansible_ssh_user=ubuntu
+prod1 ansible_host=35.153.17.41 ansible_private_key_file=.ssh/key_nv.pem ansible_ssh_user=ubuntu
+prod2 ansible_host=54.237.51.164 ansible_private_key_file=.ssh/key_nv.pem ansible_ssh_user=ubuntu
