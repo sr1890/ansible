@@ -7,6 +7,7 @@
   - name:
     user:
       name: "{{ item.name }}"
+      password: "{‌{ item.password | password_hash('sha512') }}"
       state: present
     loop: "{{ assignment_user }}"
     when: (item.role == 'developer' and 'dev' in group_names ) or (item.role == 'ops' and 'prod' in group_names)
