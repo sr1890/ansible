@@ -4,7 +4,7 @@
   vars_files:
   - vars/users.yaml
   tasks:
-  -name:
+  - name:
     user:
       name: "{{ item.name }}"
       state: present
