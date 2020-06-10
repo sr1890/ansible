@@ -1,0 +1,19 @@
+- name: play DRY with loop
+  hosts: container
+  become: yes
+  tasks:
+  - name: database is installed {{ item }}
+    package:
+      name: {{ item }}
+      state: latest
+    loop:
+    - mysql
+    - mongodb-org
+  - name: service for databases {{ item }}
+    service:
+      name: {{ item }} 
+      state: started
+    loop:
+    - mysql
+    - mongod     
+ 
