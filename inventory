@@ -20,6 +20,6 @@ dev1
 
 
 [prod:vars]
-ansible_private_key_file=.ssh/key_nv.pem
+ansible_private_key_file=../.ssh/key_nv.pem
 ansible_ssh_user=ubuntu
 git_branch=ansible-course-index-v2
