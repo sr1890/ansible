@@ -1,0 +1,12 @@
+- name: play create user per role
+  hosts: prod,dev
+  become: yes
+  vars_file:
+  - vars/users.yaml
+  tasks:
+  -name:
+    user:
+      name: "{{ item.name }}"
+      state: present
+    loop: "{{ assignment_user }}"
+    when: (item.role == 'developer' and 'dev' in group_names ) or (item.role == 'ops' and 'prod' in group_names)
