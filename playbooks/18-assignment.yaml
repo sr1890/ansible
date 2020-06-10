@@ -2,14 +2,14 @@
   hosts: container
   become: yes
   tasks:
-  - name: database is installed {{ item }}
+  - name: database is installed
     package:
       name: {{ item }}
       state: latest
     loop:
     - mysql
     - mongodb-org
-  - name: service for databases {{ item }}
+  - name: service for databases
     service:
       name: {{ item }} 
       state: started
