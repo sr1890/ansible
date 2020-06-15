@@ -1,0 +1,3 @@
+- hosts: dev1
+  roles:
+    - geerlingguy.docker
