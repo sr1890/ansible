@@ -5,4 +5,4 @@
   tasks:
   - name: debug
     debug:
-      msg: "the value of webserver is {{ webserver }}"
+      msg: "the value of webserver is {{ webserver }} "
