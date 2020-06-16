@@ -65,21 +65,21 @@
   #> security:
   #>   authorization: "enabled"
 
-- name: play rest of configuration
+- name: play - rest of configuration
   hosts: db
   become: yes
-  tags: 
-  - db-config  
+  tags:
+  - db-config
   tasks:
-  - name: pip3 install 
-    package: 
+  - name: pip3 installed
+    package:
       name: python3-pip
-      state: present
+      state: latest
   - name: pip pymongo installed
-    pip: 
+    pip:
       name: pymongo
-      state: latest    
-  - name: todo db user exist
+      state: latest
+  - name: todo db user exsits
     mongodb_user:
       login_user: "{{ db_admin_user }}"
       login_password: "{{ db_admin_pass }}"
