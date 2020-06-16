@@ -46,7 +46,7 @@
       path: /etc/mongod.conf
       block: |
         security:
-        authorization: "enabled"
+          authorization: "enabled"
       state: present
     notify: mongodb is restarted
   handlers:
