@@ -1,0 +1,8 @@
+- name: play to show how to use delegate_to in assignment
+  hosts: dev1
+  tasks:
+  - name: repos list is downloaded
+    uri:
+      url: https://api.github.com/users/sr1890/repos
+      dest: /tmp/git-repos.json
+    delegate_to: localhost

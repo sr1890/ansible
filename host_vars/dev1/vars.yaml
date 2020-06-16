@@ -1,0 +1,5 @@
+---
+
+ansible_host: 54.90.27.197
+ansible_private_key_file: ../.ssh/key_nv.pem
+ansible_ssh_user: ubuntu
