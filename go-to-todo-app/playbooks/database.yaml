@@ -79,14 +79,14 @@
     pip: 
       name: pymongo
       state: latest    
-  - name: todo db user exists
-      mongodb_user:
-        login_user: "{{ db_admin_user }}"
-        login_password: "{{ db_admin_pass }}"
-        database: admin
-        user: "{{ db_todo_user }}"
-        password: "{{ db_todo_pass }}"
-        state: present
-        roles:
-          - db: "{{ db_name_todo }}"
-            role: readWrite
+  - name: todo db user exist
+    mongodb_user:
+      login_user: "{{ db_admin_user }}"
+      login_password: "{{ db_admin_pass }}"
+      database: admin
+      user: "{{ db_todo_user }}"
+      password: "{{ db_todo_pass }}"
+      state: present
+      roles:
+        - db: "{{ db_name_todo }}"
+          role: readWrite
