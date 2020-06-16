@@ -7,5 +7,5 @@ db
 
 [todo:vars]
 ansible_ssh_user=ubuntu
-ansible_private_key_file=../.ssh/key_nv.pem
+ansible_private_key_file=../../.ssh/key_nv.pem
 
