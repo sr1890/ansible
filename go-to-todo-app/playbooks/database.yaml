@@ -1,41 +1,56 @@
 - name: play database
   hosts: db
   become: yes
-  tasks:
+  tags:
+  - db-install
     
-# sudo apt-get install gnupg
+  tasks:
+  # sudo apt-get install gnupg
   - name: install gnupg
     package:
       name: gnupg
       state: present
-
-# wget -qO - https://www.mongodb.org/static/pgp/server-4.2.asc | sudo apt-key add -
   - name: mongodb-key is added 
     apt_key:
       url: https://www.mongodb.org/static/pgp/server-4.2.asc
       state: present
-
-
-# echo "deb http://repo.mongodb.org/apt/debian buster/mongodb-org/4.2 main" | sudo tee /etc/apt/sources.list.d/mongodb.list
-
   - name: mongo-db repo is enabled
     apt_repository:
       repo: deb http://repo.mongodb.org/apt/debian buster/mongodb-org/4.2 main
       state: present
       filename: mongodb
-
-# sudo apt install mongodb-org
-
   - name: install mongodb-org
     package:
       name: mongodb-org
       state: present  
-
-# sudo systemctl enable mongod
-# sudo systemctl start mongod 
   - name: db is started 
     service:
       name: mongod
       state: started
       enabled: yes
 
+- name: play datbase - configure admin
+  hosts: db
+  become: yes
+  tags:
+  - db-config-admin
+  tasks:
+  - name: admin user
+    command: {{ item }}
+    loop:
+    -  mongo admin --eval 'db.dropUser ("superadmin")'
+    - |
+      mongo admin --eval 'db.createUser( { user: "superadmin", pwd: "MyPass1234", roles: [ { role: "clusterAdmin", db: "admin" }, { role: "userAdminAnyDatabase", db: "admin" } ] } )'
+
+
+#1) disable security (/etc/mongod.conf) --> Restart Mongodb
+#> security:
+#>   authorization: "disabled"
+
+#2) drop admin user if exist
+mongo admin --eval 'db.dropUser("superadmin")'
+#3) create admin user
+mongo admin --eval 'db.createUser( { user: "superadmin", pwd: "MyPass1234", roles: [ { role: "clusterAdmin", db: "admin" }, { role: "userAdminAnyDatabase", db: "admin" } ] } )'
+#4) enable security (/etc/mongod.conf) --> Restart Mongodb
+#> security:
+#>   authorization: "enabled"
