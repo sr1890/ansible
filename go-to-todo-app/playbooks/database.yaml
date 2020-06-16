@@ -36,7 +36,7 @@
   - db-config-admin
   tasks:
   - name: admin user
-    command: {{ item }}
+    command: "{{ item }}"
     loop:
     -  mongo admin --eval 'db.dropUser ("{{ db_admin_user }}")'
     - |
