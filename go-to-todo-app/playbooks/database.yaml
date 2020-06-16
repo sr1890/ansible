@@ -54,19 +54,3 @@
     service: 
       name: mongod
       state: restarted  
-
-#1) disable security (/etc/mongod.conf) --> Restart Mongodb
-#> security:
-#>   authorization: "disabled"
-
-#2) drop admin user if exist
-mongo admin --eval 'db.dropUser("superadmin")'
-#3) create admin user
-mongo admin --eval 'db.createUser( { user: "superadmin", pwd: "MyPass1234", roles: [ { role: "clusterAdmin", db: "admin" }, { role: "userAdminAnyDatabase", db: "admin" } ] } )'
-#4) enable security (/etc/mongod.conf) --> Restart Mongodb
-#> security:
-#>   authorization: "enabled"
-
-
-# db_admin_user: superuser
-# db_admin_pass: PassMy1234
