@@ -1,7 +1,0 @@
-- name: app1.company.com
-  hosts: ec2
-  tasks:
-  - name: user name present
-    user:
-      name: odoo
-      state: present

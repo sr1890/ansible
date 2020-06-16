@@ -1,0 +1,11 @@
+app ansible_host=54.160.104.230
+db ansible_host=18.235.248.150
+
+[todo]
+app
+db
+
+[todo:vars]
+ansible_ssh_user=ubuntu
+ansible_private_key_file=../.ssh/key_nv.pem
+
