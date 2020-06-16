@@ -38,10 +38,22 @@
   - name: admin user
     command: {{ item }}
     loop:
-    -  mongo admin --eval 'db.dropUser ("superadmin")'
+    -  mongo admin --eval 'db.dropUser ("{{ db_admin_user }}")'
     - |
-      mongo admin --eval 'db.createUser( { user: "superadmin", pwd: "MyPass1234", roles: [ { role: "clusterAdmin", db: "admin" }, { role: "userAdminAnyDatabase", db: "admin" } ] } )'
-
+      mongo admin --eval 'db.createUser( { user: "{{ db_admin_user }}", pwd: "{{ db_admin_pass }}", roles: [ { role: "clusterAdmin", db: "admin" }, { role: "userAdminAnyDatabase", db: "admin" } ] } )'
+  - name: security is enabled
+    blockinfile:
+      path: /etc/mongod.conf
+      block: |
+        security:
+        authorization: "disabled"
+      state: present
+    notify: mongodb is restarted
+  handlers:
+  - name: mongodb is restarted
+    service: 
+      name: mongod
+      state: restarted  
 
 #1) disable security (/etc/mongod.conf) --> Restart Mongodb
 #> security:
@@ -54,3 +66,7 @@ mongo admin --eval 'db.createUser( { user: "superadmin", pwd: "MyPass1234", role
 #4) enable security (/etc/mongod.conf) --> Restart Mongodb
 #> security:
 #>   authorization: "enabled"
+
+
+# db_admin_user: superuser
+# db_admin_pass: PassMy1234
